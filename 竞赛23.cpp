@@ -361,18 +361,62 @@
 
 
 
-#include <iostream>
-#include<string>    
-using namespace std;
-int main()
-{
-	size_t pos = 0;
-    string s = "3.14x456";
-    double ret = stod(s, &pos);
-    cout << ret << endl;
-    cout << "pos:" << pos << endl;
-    return 0;
-}
+//#include <iostream>
+//#include<string>    
+//using namespace std;
+//int main()
+//{
+//	size_t pos = 0;
+//    string s = "3.14x456";
+//    double ret = stod(s, &pos);
+//    cout << ret << endl;
+//    cout << "pos:" << pos << endl;
+//    return 0;
+//}
+
+
+
+//#include <iostream>
+//#include <string>    
+//using namespace std;
+//int main()
+//{
+//    string pi = "pi is " + to_string(3.14159);
+//    cout << pi << endl;
+//    return 0;
+//}
+
+
+
+//#include <iostream>
+//#include <string>    
+//using namespace std;
+//int main()
+//{
+//    string pi = "pi is " + 3.14159;
+//    cout << pi << endl;
+//    return 0;
+//}
+//´íÎóÊ¾·¶ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
