@@ -84,6 +84,7 @@ void erase(int p)
 
 
 
+//listÁ´±í 
 #include <list>
 using namespace std;
 int main()
