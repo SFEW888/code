@@ -301,14 +301,51 @@
  
  
 //Protecting the Flowers S 
+//#include<iostream>
+//#include<algorithm>
+//
+//using namespace std;
+//
+//typedef long long LL;
+//
+//const int N = 1e5 + 10; 
+// 
+//int n;
+//struct node
+//{
+//	int t;
+//	int d;
+// }a[N];
+//
+//bool cmp(node&x, node&y)
+//{
+//	return x.t * y.d < x.d * y.t;
+//}
+// 
+//int main()
+//{
+//	cin >> n;
+//	for(int i = 1; i <= n; i++)
+//	{
+//		cin >> a[i].t >> a[i].d;
+//	}
+//	
+//	sort(a + 1, a + 1 + n, cmp);
+//	
+//	LL ret = 0, t = 0;
+//	for(int i = 1; i <= n; i++)
+//	{
+//		ret += a[i].d * t;
+//		t += a[i].t * 2;
+//	}
+//	
+//	cout << ret << endl;
+//}  
  
  
  
  
- 
- 
- 
- 
+//ÄÌÅ£ÍæÔÓ¼¼ 
  
  
  
