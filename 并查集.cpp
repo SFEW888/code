@@ -142,53 +142,127 @@
 
 
 //亲戚
-#include <iostream>
+//#include <iostream>
+//
+//using namespace std;
+//
+//const int N = 5010;
+//
+//int n, m, p;
+//int fa[N];
+//
+//int find(int x)
+//{
+//	return fa[x] == x ? x : fa[x] = find(fa[x]); 
+//} 
+//
+//void un(int x, int y)
+//{
+//	int fx = find(x), fy = find(y);
+//	fa[fx] = fy;
+//}
+//
+//bool issame(int x, int y)
+//{
+//	return find(x) == find(y);
+//}
+//
+//int main()
+//{
+//	cin >> n >> m >> p;
+//	
+//	//初始化
+//	for(int i = 1; i <= n; i++) fa[i] = i;
+//	
+//	while(m--)
+//	{
+//		int x, y; cin >> x >> y;
+//		un(x, y);
+//	} 
+//	
+//	while(p--)
+//	{
+//		int x, y; cin >> x >> y;
+//		if(issame(x, y)) cout << "Yes\n";
+//		else cout << "No\n";
+//	}
+//	
+//	return 0;
+//}
 
-using namespace std;
 
-const int N = 5010;
 
-int n, m, p;
-int fa[N];
 
-int find(int x)
-{
-	return fa[x] == x ? x : fa[x] = find(fa[x]); 
-} 
+//Lake Counting S
+//#include <iostream>
+//
+//using namespace std;
+//
+//const int N = 110;
+//
+//int n, m; 
+//char a[N][N];
+//int fa[N * N];
+//
+//int dx[] = {0, 1, 1, 1};
+//int dy[] = {1, 1, 0, -1};
+//
+//int find(int x)
+//{
+//	return fa[x] == x ? x : fa[x] = find(fa[x]);
+//}
+//
+//void un(int x, int y)
+//{
+//	fa[find(x)] = find(y);
+//}
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	
+//	for(int i = 0; i < n; i++)
+//	    for(int j = 0; j < m; j++)
+//	        cin >> a[i][j];
+//	        
+//	//初始化
+//	for(int i = 0; i < n * m; i++) fa[i] = i;
+//	
+//	for(int i = 0; i < n; i++)
+//	{
+//		for(int j = 0; j < m; j++)
+//		{
+//			if(a[i][j] == '.') continue;
+//			
+//			for(int k = 0; k < 4; k++)
+//			{
+//				int x = i + dx[k], y = j + dy[k];
+//				if(y >= 0 && a[x][y] == 'W')//防止越界访问
+//				{
+//					un(i * m + j, x * m + y);
+//				} 
+//			}
+//		}
+//	}
+//		
+//	int ret = 0;
+//	for(int i = 0; i < n * m; i++)
+//	{
+//		//一维转二维
+//		int x = i / m, y = i % m;
+//		if(a[x][y] == 'W' && fa[i] == i) ret++; 
+//    }	       
+//    
+//    cout << ret << endl;
+//    
+//    return 0;
+//}
 
-void un(int x, int y)
-{
-	int fx = find(x), fy = find(y);
-	fa[fx] = fy;
-}
 
-bool issame(int x, int y)
-{
-	return find(x) == find(y);
-}
 
-int main()
-{
-	cin >> n >> m >> p;
-	
-	//初始化
-	for(int i = 1; i <= n; i++) fa[i] = i;
-	
-	while(m--)
-	{
-		int x, y; cin >> x >> y;
-		un(x, y);
-	} 
-	
-	while(p--)
-	{
-		int x, y; cin >> x >> y;
-		if(issame(x, y)) cout << "Yes\n";
-		else cout << "No\n";
-	}
-	
-	return 0;
-}
+
+
+
 
 
 
