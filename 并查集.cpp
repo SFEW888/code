@@ -261,31 +261,298 @@
 
 
 
+//扩展并查集 
+//团伙
+//#include <iostream>
+//
+//using namespace std;
+//
+//const int N = 1010;
+//
+//int n, m;
+//int fa[N * 2];
+//
+//int find(int x)
+//{
+//	return fa[x] == x ? x : fa[x] = find(fa[x]);
+//} 
+//
+////朋友域做父节点
+//void un(int x, int y)
+//{
+//	fa[find(y)] = find(x);
+//} 
+//
+//int main()
+//{
+//	cin >> n >> m;
+//	
+//	//初始化
+//	for(int i = 1; i <= n * 2; i++) fa[i] = i;
+//	
+//	while(m--)
+//	{
+//		char op;
+//		int x, y;
+//		cin >> op >> x >> y;
+//		
+//		if(op == 'F')
+//		{
+//			un(x, y);
+//		}
+//		else
+//		{
+//			un(x, y + n);
+//			un(y, x + n);
+//		}
+//	} 
+//	
+//	int ret = 0;
+//	for(int i = 1; i <= n; i++)
+//	{
+//		if(fa[i] == i) ret++;
+//	}
+//	
+//	cout << ret << endl;
+//	
+//	return 0;
+//}
 
 
 
 
-
-
-
-
-
+//食物链
+//#include <iostream>
+//
+//using namespace std;
+//
+//const int N = 5e4 + 10;
+//
+//int n, k;
+//int fa[N * 3];
+//
+//int find(int x)
+//{
+//	return fa[x] == x ? x : fa[x] = find(fa[x]);
+//} 
+//
+//void un(int x, int y)
+//{
+//	fa[find(x)] = find(y);
+//}
+//
+//int main()
+//{
+//	cin >> n >> k;
+//	for(int i = 1; i <= n * 3; i++) fa[i] = i;
+//	
+//	int ret = 0;
+//	while(k--)
+//	{
+//		int op, x, y; cin >> op >> x >> y;
+//		
+//		if(x > n || y > n) ret++;
+//		else if(op == 1)//同类
+//		{
+//			if(find(x) == find(y + n) || find(x) == find(y + n + n)) ret++;
+//			else
+//		    {
+//			    un(x, y);
+//			    un(x + n, y + n);
+//			    un(x + n + n, y + n + n);
+//		    }
+//		} 
+//		else//x吃y 
+//		{
+//			if(find(x) == find(y) || find(x) == find(y + n)) ret++;
+//			else
+//			{
+//				un(x, y + n + n);
+//				un(x + n, y);
+//				un(x + n + n, y + n);
+//			}
+//		}
+//	}
+//	
+//	cout << ret << endl;
+//	
+//	return 0;
+//	
+//} 
 
 
  
+//带权并查集
+//初始化 
+//const int N = 1e5 + 10, INF = 0x3f3f3f3f;
+//int n;
+//int fa[N], d[N];//存储权值
+//
+//void init()
+//{
+//	for(int i = 1; i <= n; i++)
+//	{
+//		fa[i] = i;
+//		d[i] = 0;//根据题目要求来 
+//	}
+//} 
+
+
+//查询根节点操作
+//int find(int x)
+//{
+//	if(fa[x] == x) return x;
+//	
+//	int t = find(fa[x]);//这句代码一定要先执行，先让父结点挂在根节点的后面
+//	d[x] += d[fa[x]];//注意，可能会根据权值的意义有所改变
+//	
+//	return fa[x] = t;
+//}
+
+
+//合并操作union
+//void un(int x, int y)
+//{
+//	int fx = find(x), fy = find(y);
+//	if(fx != fy)//不在一个集合
+//	{
+//		fa[fx] = fy;
+//		d[fx] = d[y] + w - d[x];//注意可能会根据权值的意义有所改变 
+//	} 
+//}
+
+
+//查询距离操作query
+//int query(int x, int y)
+//{
+//	int fx = find(x), fy = find(y);
+//	
+//	if(fx != fy) return INF;//如果不在同一个集合中，说明距离未知
+//	return d[y] - d[x];
+//}
 
 
 
+//食物链
+//#include <iostream>
+//
+//using namespace std;
+//
+//const int N = 5e4 + 10;
+//
+//int n, k;
+//int fa[N], d[N];
+//
+//int find(int x)
+//{
+//	if(fa[x] == x) return x;
+//	
+//	int t = find(fa[x]);
+//	d[x] += d[fa[x]];
+//	return fa[x] = t;
+//} 
+//
+//void un(int x, int y, int w)
+//{
+//	int fx = find(x), fy = find(y);
+//	if(fx != fy)
+//	{
+//		fa[fx] = fy;
+//		d[fx] = d[y] + w - d[x];
+//	} 
+//}
+//
+//int main()
+//{
+//	cin >> n >> k;
+//	for(int i = 1; i <= n; i++) fa[i] = i;
+//	
+//	int ret  = 0;
+//	while(k--)
+//	{
+//		int op, x, y; cin >> op >> x >> y;
+//		int fx = find(x), fy = find(y);
+//		
+//		if(x > n || y > n) ret++;
+//		else if(op == 1)//同类 
+//		{
+//			if(fx == fy && ((d[y] - d[x]) % 3 + 3) % 3 != 0) ret++;
+//			else un(x, y, 0); 
+//		}
+//		else//x吃y
+//		{
+//			if(fx == fy && ((d[y] - d[x]) % 3 + 3) % 3 != 1) ret++;
+//			else un(x, y, 2); 
+//		} 
+//	}
+//	cout << ret << endl;
+//	
+//	return 0;
+//}
 
 
 
+//银河英雄传说 
+#include <iostream>
 
+using namespace std;
 
+const int N = 3e4 + 10;
 
+int n = 3e4; 
+int fa[N], d[N], cnt[N];//维护集合的合并、维护权值、维护集合的大小 
 
+int find(int x)
+{
+	if(fa[x] == x) return x;
+	
+	int t = find(fa[x]);
+	d[x] += d[fa[x]];
+	return fa[x] = t; 
+}
 
+void un(int x, int y)
+{
+	int fx = find(x), fy = find(y);
+	
+	if(fx != fy)
+	{
+		fa[fx] = fy;
+		d[fx] = cnt[fy];
+		cnt[fy] += cnt[fx];
+	}
+}
 
+int query(int x, int y)
+{
+	int fx = find(x), fy = find(y);
+	if(fx != fy) return -1;
+	else return abs(d[y] - d[x]) - 1;
+}
 
+int main()
+{
+	//初始化
+	for(int i = 1; i <= n; i++)
+	{
+		fa[i] = i;
+		cnt[i] = 1;
+	} 
+	
+	int T; cin >> T;
+	
+	while(T--)
+	{
+		char op; int x, y;
+	    cin >> op >> x >> y;
+	    if(op == 'M')//合并
+	        un(x, y); 
+	    else
+	        cout << query(x, y) << endl;
+	} 
+		
+	return 0;	    
+}
 
 
 
