@@ -532,71 +532,124 @@
 
 
 //合唱队形
+//#include <iostream>
+//
+//using namespace std;
+//
+//const int N = 110;
+//
+//int n;
+//int a[N];
+//int f[N], g[N];
+//
+//int main()
+//{
+//	cin >> n;
+//	for(int i = 1; i <= n; i++) cin >> a[i];
+//	
+//	//从左往右
+//	for(int i = 1; i <= n; i++)
+//	{
+//		f[i] = 1;
+//		for(int j = 1; j < i; j++)
+//		{
+//			if(a[j] < a[i])
+//			{
+//				f[i] = max(f[i], f[j] + 1);
+//			}
+//		}
+//	} 
+//	
+//	//从右往左
+//	for(int i = n; i >= 1; i--)
+//	{
+//		g[i] = 1;
+//		for(int j = n; j > i; j--)
+//		{
+//			if(a[j] < a[i])
+//			{
+//				g[i] = max(g[i], g[j] + 1);
+//			}
+//		}
+//	} 
+//	
+//	int ret = 0;
+//	for(int i = 1; i <= n; i++)
+//	{
+//		ret = max(ret, f[i] + g[i] - 1);
+//	}
+//	
+//	cout << n - ret << endl;
+//	
+//	return 0;
+//} 
+
+
+
+
+//牛可乐和最长公共子序列
+//#include <iostream>
+//
+//using namespace std;
+//
+//const int N = 5010;
+//
+//string s, t;
+//int f[N][N];
+//
+//int main()
+//{
+//	while(cin >> s >> t)
+//	{
+//		int n = s.size(), m = t.size();
+//		
+//		for(int i = 1; i <= n; i++)
+//		    for(int j = 1; j <= m; j++)
+//		    {
+//		    	if(s[i - 1] == t[j - 1]) f[i][j] = f[i - 1][j - 1] + 1;
+//		    	else f[i][j] = max(f[i - 1][j], f[i][j - 1]);
+//			}
+//		cout << f[n][m] << endl;	
+//	}
+//	
+//	return 0;
+//}
+
+
+
+
+
+//编辑距离
 #include <iostream>
 
 using namespace std;
 
-const int N = 110;
+const int N = 2010;
 
-int n;
-int a[N];
-int f[N], g[N];
+string a, b;
+int f[N][N];
 
 int main()
 {
-	cin >> n;
-	for(int i = 1; i <= n; i++) cin >> a[i];
+	cin >> a >> b;
+	int n = a.size(), m = b.size();
+	a = " " + a, b = " " + b;
 	
-	//从左往右
+	//初始化
+	for(int i = 1; i <= n; i++) f[i][0] = i;
+	for(int j = 1; j <= m; j++) f[0][j] = j;
+	
 	for(int i = 1; i <= n; i++)
-	{
-		f[i] = 1;
-		for(int j = 1; j < i; j++)
+	    for(int j = 1; j <= m; j++)
 		{
-			if(a[j] < a[i])
-			{
-				f[i] = max(f[i], f[j] + 1);
-			}
-		}
-	} 
+			if(a[i] == b[j]) f[i][j] = f[i - 1][j - 1];
+			else f[i][j] = min(min(f[i - 1][j], f[i][j - 1]), f[i - 1][j - 1]) + 1; 
+		} 
 	
-	//从右往左
-	for(int i = n; i >= 1; i--)
-	{
-		g[i] = 1;
-		for(int j = n; j > i; j--)
-		{
-			if(a[j] > a[i])
-			{
-				g[i] = max(g[i], g[j] + 1);
-			}
-		}
-	} 
-	
-	int ret = 0;
-	for(int i = 1; i <= n; i++)
-	{
-		ret = max(ret, f[i] + g[i] - 1);
-	}
-	
-	cout << n - ret << endl;
+	cout << f[n][m] << endl;	
 	
 	return 0;
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
